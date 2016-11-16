@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="抓取x-words数据">
+	<title>x-Words数据抓取</title>
+	<script type="text/javascript">
+		function check(){
+			var terget=document.getElementById('urls');
+			terget.value=Trim(terget.value);	//去除首尾空格
+			urls=terget.value.split('\n')
+			for (key in urls) {
+				if (!urls[key].match(/http:\/\/[a-z]-words\.[a-zA-Z]+\//)) {
+					alert('请输入正确的x-Words系网址');
+					terget.focus();
+					return false;
+				}
+			}
+			return true;
+		}
+		 function Trim(str)
+		{
+			return str.replace(/(^\s*)|(\s*$)/g, ""); 
+		}
+	</script>
+</head>
+<body>
+	<center>
+		<form action="getw.php" method="post" onsubmit="return check()">
+			请输入要抓取数据的x-Words网站地址，每行一个：<br>
+			比如:http://e-words.jp/p/t-PC.html<br>
+			<br>
+			<textarea id="urls" name="urls" cols="60" rows="10"></textarea>
+			<br>
+			<input type="reset" value="重填">
+			&nbsp;
+			<input type="submit" name="submit" value="开始抓取"></form>
+	</center>
+</body>
+</html>
